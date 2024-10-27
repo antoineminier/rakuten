@@ -36,6 +36,8 @@ jobs:
       
       - name: Start Prediction API server for localhost:8001
         working-directory: src
+        env:
+          CUDA_VISIBLE_DEVICES: ""    # Force TensorFlow to use CPU
         run: |
           python inferenceApi_Predict.py &
 
