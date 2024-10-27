@@ -10,8 +10,10 @@ from tensorflow import keras
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.efficientnet import preprocess_input
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+import nltk
 import logging
 import os
+nltk.download('punkt_tab')
 
 
 # Use the GitHub Actions temporary directory
