@@ -10,7 +10,15 @@ from tensorflow import keras
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 from tensorflow.keras.applications.efficientnet import preprocess_input
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+import logging
+import os
 
+
+# Use the GitHub Actions temporary directory
+temp_dir = os.getenv('RUNNER_TEMP', '/tmp')  # Default to /tmp if RUNNER_TEMP is unavailable
+log_file = os.path.join(temp_dir, 'inferenceApi_Predict.log')
+
+logging.basicConfig(filename=log_file, level=logging.INFO)
 
 app = FastAPI()
 
