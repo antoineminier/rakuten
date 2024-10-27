@@ -14,9 +14,9 @@ def test_prediction_endpoint():
     product_description_2 = "Magic The Gathering  Sage Des Jachères   X4  Lorwyn Vf"
     image_1 = "image_1299103555_product_103817069.jpg"
     image_2 = "image_963966948_product_244966353.jpg"
-    # Define the relative path to the directory containing test images
+
+    # Get paths for each test image
     image_dir = os.path.join(os.path.dirname(__file__), "test_images")
-    # Get absolute paths for each test image
     image_path_1 = os.path.abspath(os.path.join(image_dir, image_1))
     image_path_2 = os.path.abspath(os.path.join(image_dir, image_2))
 
@@ -32,10 +32,7 @@ def test_prediction_endpoint():
     response_1 = requests.post(prediction_url, json=payload_1)
     
     # Assert that the status code returned is 200
-    assert response_1.status_code == 200, f"Expected status code 200 ; got {response_1.status_code}"
-    
-    # Parse the JSON response
-    response_1_data = response_1.json()
+    assert response_1.status_code == 200, f"Expected status code 200 but got {response_1.status_code}"
     
 
     ### SECOND REQUEST
@@ -49,4 +46,4 @@ def test_prediction_endpoint():
     response_2 = requests.post(prediction_url, json=payload_2)
     
     # Assert that the status code returned is 200
-    assert response_2.status_code == 200, f"Expected status code 200 ; got {response_2.status_code}"
+    assert response_2.status_code == 200, f"Expected status code 200 but got {response_2.status_code}"
