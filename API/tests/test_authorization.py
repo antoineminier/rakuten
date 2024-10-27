@@ -17,7 +17,7 @@ def test_authorization_endpoint():
     }
     
     # Send a POST request to the authorization endpoint
-    response_1 = requests.post(auth_url, json=payload_1)
+    response_1 = requests.post(auth_url, data=payload_1)
     
     # Assert that the status code returned is 200
     assert response_1.status_code == 200, f"Expected status code 200 but got {response_1.status_code}"
@@ -30,7 +30,7 @@ def test_authorization_endpoint():
     }
     
     # Send a POST request to the authorization endpoint
-    response_2 = requests.post(auth_url, json=payload_2)
+    response_2 = requests.post(auth_url, data=payload_2)
     
     # Assert that the status code returned is 200
     assert response_2.status_code == 400, f"Expected status code 200 but got {response_2.status_code}"
