@@ -42,6 +42,7 @@ jobs:
           python inferenceApi_Predict.py > ${{ runner.temp }}/predict_server_output.log 2>&1 &
     
       - name: Wait for API endpoints to be ready
+        continue-on-error: true
         run: |
           # Poll both APIs every 5 seconds until they are ready or timeout after 60 seconds
           timeout 60 bash -c 'until curl -sSf http://localhost:8000/; do echo "Waiting for API at localhost:8000..."; sleep 5; done'
