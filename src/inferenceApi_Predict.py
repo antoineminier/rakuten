@@ -54,6 +54,10 @@ async def predict(data: InputData):
     if len(data.descriptions) != len(data.image_paths):
         raise HTTPException(status_code=400, detail="The number of descriptions must match the number of image paths.")
 
+    for path in data.image_paths:
+        if not os.path.exists(path):
+            logging.info(f"Image path does not exist: {path}")
+
     # Prétraitement des textes
     df_text = pd.DataFrame(data.descriptions, columns=["description"])
     text_preprocessor.preprocess_text_in_df(df_text, columns=["description"])
