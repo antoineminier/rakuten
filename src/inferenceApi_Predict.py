@@ -16,12 +16,6 @@ import os
 nltk.download('punkt_tab')
 
 
-# Use the GitHub Actions temporary directory
-temp_dir = os.getenv('RUNNER_TEMP', '/tmp')  # Default to /tmp if RUNNER_TEMP is unavailable
-log_file = os.path.join(temp_dir, 'inferenceApi_Predict.log')
-
-logging.basicConfig(filename=log_file, level=logging.INFO)
-
 app = FastAPI()
 
 # Charger le tokenizer
@@ -30,11 +24,7 @@ with open("../models/tokenizer_config.json", "r", encoding="utf-8") as json_file
 tokenizer = keras.preprocessing.text.tokenizer_from_json(tokenizer_config)
 
 # Charger le modèle EfficientNet-LSTM
-current_dir = os.path.dirname(__file__)
-model_path = os.path.join(current_dir, '..', 'models', 'JG_model_EfficientNetB0-LSTM.keras')
-efficientnet_lstm_model = keras.models.load_model(model_path)
-#efficientnet_lstm_model = keras.models.load_model("../models/JG_model_EfficientNetB0-LSTM.keras")
-logging.info("Model loaded successfully.")
+efficientnet_lstm_model = keras.models.load_model("../models/JG_model_EfficientNetB0-LSTM.keras")
 
 # Charger le mapper
 with open("../models/mapper.json", "r") as json_file:
@@ -55,10 +45,6 @@ async def predict(data: InputData):
 
     if len(data.descriptions) != len(data.image_paths):
         raise HTTPException(status_code=400, detail="The number of descriptions must match the number of image paths.")
-
-    for path in data.image_paths:
-        if not os.path.exists(path):
-            logging.info(f"Image path does not exist: {path}")
 
     # Prétraitement des textes
     df_text = pd.DataFrame(data.descriptions, columns=["description"])
@@ -99,4 +85,3 @@ async def predict(data: InputData):
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8001)
-
