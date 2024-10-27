@@ -101,6 +101,7 @@ async def predict(
     response = requests.post(service_url, json=payload)
 
     if response.status_code != 200:
+        logging.error(f"Error calling the external service. Status code: {response.status_code}, Response: {response.text}")
         raise HTTPException(status_code=response.status_code, detail="Error calling the external service.")
 
     predictions = response.json()  

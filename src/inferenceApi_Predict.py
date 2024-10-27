@@ -29,6 +29,7 @@ tokenizer = keras.preprocessing.text.tokenizer_from_json(tokenizer_config)
 
 # Charger le modèle EfficientNet-LSTM
 efficientnet_lstm_model = keras.models.load_model("../models/JG_model_EfficientNetB0-LSTM.keras")
+logging.info("Model loaded successfully.")
 
 # Charger le mapper
 with open("../models/mapper.json", "r") as json_file:
