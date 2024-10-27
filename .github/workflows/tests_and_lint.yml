@@ -40,7 +40,11 @@ jobs:
           CUDA_VISIBLE_DEVICES: ""    # Force TensorFlow to use CPU
         run: |
           python inferenceApi_Predict.py &
-
+    
+      - name: Debug Prediction API server
+        run: |
+          tail -n 50 "${{ runner.temp }}/inferenceApi_Predict.log" || echo "Log not found"
+    
       - name: Wait for API endpoints to be ready
         run: |
           # Poll both APIs every 5 seconds until they are ready or timeout after 60 seconds
