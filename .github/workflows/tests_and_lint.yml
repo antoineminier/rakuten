@@ -40,15 +40,10 @@ jobs:
           python inferenceApi_Predict.py > ${{ runner.temp }}/predict_server_output.log 2>&1 &
     
       - name: Wait for API endpoints to be ready
-        continue-on-error: true
         run: |
           # Poll both APIs every 5 seconds until they are ready or timeout after 60 seconds
           timeout 60 bash -c 'until nc -z localhost 8000; do echo "Waiting for API at localhost:8000..."; sleep 5; done'
           timeout 60 bash -c 'until nc -z localhost 8001; do echo "Waiting for Prediction API at localhost:8001..."; sleep 5; done'
-
-      - name: Check Prediction API startup logs
-        run: |
-          cat "${{ runner.temp }}/predict_server_output.log" || echo "Log not found"
 
       - name: Run authorization tests
         working-directory: API/tests
@@ -56,9 +51,14 @@ jobs:
           pytest test_authorization.py
 
       - name: Run prediction tests
+        continue-on-error: true
         working-directory: API/tests
         run: |
           pytest test_prediction.py
+  
+      - name: Check Prediction API logs
+        run: |
+          cat "${{ runner.temp }}/predict_server_output.log" || echo "Log not found"
 
       - name: Run flake8 linter
         run: |
