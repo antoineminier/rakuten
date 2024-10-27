@@ -1,0 +1,112 @@
+{
+    "product_categories": [
+        {
+            "code_type": 10,
+            "categorie_designation": "Livres (à affiner)"
+        },
+        {
+            "code_type": 2280,
+            "categorie_designation": "journaux, magazines, anciens"
+        },
+        {
+            "code_type": 50,
+            "categorie_designation": "accessoires jeux vidéos"
+        },
+        {
+            "code_type": 1280,
+            "categorie_designation": "Jouets"
+        },
+        {
+            "code_type": 2705,
+            "categorie_designation": "Livres, séries, tomes (à statuer)"
+        },
+        {
+            "code_type": 2522,
+            "categorie_designation": "papeterie"
+        },
+        {
+            "code_type": 2582,
+            "categorie_designation": "mobilier extérieur, jardin"
+        },
+        {
+            "code_type": 1560,
+            "categorie_designation": "aménagement intérieur, ameublement"
+        },
+        {
+            "code_type": 1281,
+            "categorie_designation": "jouets enfant bas âge"
+        },
+        {
+            "code_type": 1920,
+            "categorie_designation": "textiles maison, décoration"
+        },
+        {
+            "code_type": 2403,
+            "categorie_designation": "livres informatifs, culturels (à statuer)"
+        },
+        {
+            "code_type": 1140,
+            "categorie_designation": "figurines pop, plastiques, de collection"
+        },
+        {
+            "code_type": 2583,
+            "categorie_designation": "piscine"
+        },
+        {
+            "code_type": 1180,
+            "categorie_designation": "figurines à peindre, jeux de rôles"
+        },
+        {
+            "code_type": 1300,
+            "categorie_designation": "objets et accessoires télécommandées"
+        },
+        {
+            "code_type": 2462,
+            "categorie_designation": "jeux vidéos et consoles"
+        },
+        {
+            "code_type": 1160,
+            "categorie_designation": "cartes à collectionner"
+        },
+        {
+            "code_type": 2060,
+            "categorie_designation": "décoration de noël"
+        },
+        {
+            "code_type": 40,
+            "categorie_designation": "jeux vidéos"
+        },
+        {
+            "code_type": 60,
+            "categorie_designation": "consoles"
+        },
+        {
+            "code_type": 1320,
+            "categorie_designation": "puériculture"
+        },
+        {
+            "code_type": 1302,
+            "categorie_designation": "accessoires divers"
+        },
+        {
+            "code_type": 2220,
+            "categorie_designation": "articles animaux domestiques"
+        },
+        {
+            "code_type": 2905,
+            "categorie_designation": "jeux téléchargement"
+        },
+        {
+            "code_type": 2585,
+            "categorie_designation": "outillage"
+        },
+        {
+            "code_type": 1940,
+            "categorie_designation": "épicerie"
+        },
+        {
+            "code_type": 1301,
+            "categorie_designation": "articles enfants"
+        }
+    ]
+}
