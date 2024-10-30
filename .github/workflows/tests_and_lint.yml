@@ -35,9 +35,9 @@ jobs:
           python main.py &
       
       - name: Start Prediction API server for localhost:8001
-        working-directory: API/gateway
+        working-directory: src
         run: |
-          python predict.py > ${{ runner.temp }}/predict_server_output.log 2>&1 &
+          python inferenceApi_Predict.py > ${{ runner.temp }}/predict_server_output.log 2>&1 &
     
       - name: Wait for API endpoints to be ready
         run: |
