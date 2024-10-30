@@ -28,7 +28,11 @@ def test_prediction_endpoint():
         payload_1 = {"descriptions": [product_description_1]}
         
         # Send a POST request to the prediction endpoint
-        response_1 = requests.post(prediction_url, data=payload_1, files=files_1)
+        response_1 = requests.post(prediction_url, params=payload_1, files=files_1)
+        print(f"Request Payload: {payload_1}")
+        print(f"Request Files: {files_1}")
+        print(f"Response Status Code: {response_1.status_code}")
+        print(f"Response Content: {response_1.text}")
         # Check if a prediction was returned as expected
         assert response_1.status_code == 200, f"Expected status code 200 but got {response_1.status_code}"
     
@@ -40,6 +44,6 @@ def test_prediction_endpoint():
         payload_2 = {"descriptions": [product_description_1, product_description_2]}
         
         # Send a POST request to the prediction endpoint
-        response_2 = requests.post(prediction_url, data=payload_2, files=files_2)
+        response_2 = requests.post(prediction_url, params=payload_2, files=files_2)
         # Check if a prediction was returned as expected
         assert response_2.status_code == 200, f"Expected status code 200 but got {response_2.status_code}"
