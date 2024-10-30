@@ -2,12 +2,12 @@ import requests
 import os
 
 # Define the base URL for the API
-BASE_URL = "http://localhost:8001" 
+BASE_URL = "http://localhost:8000" 
 
 # Test for the prediction endpoint
 def test_prediction_endpoint():
     # Define the endpoint URL
-    prediction_url = f"{BASE_URL}/predict"
+    prediction_url = f"{BASE_URL}/api/predict"
     
     # Prepare the payload with text and image
     product_description_1 = "Concepts And Case Analysis In The Law Of Contracts"
