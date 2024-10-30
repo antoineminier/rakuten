@@ -21,29 +21,25 @@ def test_prediction_endpoint():
     image_path_2 = os.path.abspath(os.path.join(image_dir, image_2))
 
 
-    ### FIRST REQUEST
-    # Create the data for the first request (text and image path)
-    payload_1 = {
-         "descriptions": [product_description_1],
-         "image_paths": [image_path_1]
-    }
-    
-    # Send a POST request to the prediction endpoint
-    response_1 = requests.post(prediction_url, json=payload_1)
-    
-    # Assert that the status code returned is 200
-    assert response_1.status_code == 200, f"Expected status code 200 but got {response_1.status_code}"
+    # First request : with one description and one image
+    # predict.py which defines the api/predict endpoint expects images as UploadFile objects
+    with open(image_path_1, "rb") as img_file_1:
+        files_1 = {"images": (image_1, img_file_1, "image/jpeg")}
+        payload_1 = {"descriptions": [product_description_1]}
+        
+        # Send a POST request to the prediction endpoint
+        response_1 = requests.post(prediction_url, data=payload_1, files=files_1)
+        # Check if a prediction was returned as expected
+        assert response_1.status_code == 200, f"Expected status code 200 but got {response_1.status_code}"
     
 
-    ### SECOND REQUEST
-    # Create the data for the second request, with two descriptions and image paths
-    payload_2 = {
-         "descriptions": [product_description_1, product_description_2],
-         "image_paths": [image_path_1, image_path_2]
-    }
-
-    # Send a POST request to the prediction endpoint
-    response_2 = requests.post(prediction_url, json=payload_2)
-    
-    # Assert that the status code returned is 200
-    assert response_2.status_code == 200, f"Expected status code 200 but got {response_2.status_code}"
+    # Second request : with two descriptions and two images
+    # predict.py which defines the api/predict endpoint expects images as UploadFile objects
+    with open(image_path_1, "rb") as img_file_1, open(image_path_2, "rb") as img_file_2:
+        files_2 = [("images", (image_1, img_file_1, "image/jpeg")), ("images", (image_2, img_file_2, "image/jpeg"))]
+        payload_2 = {"descriptions": [product_description_1, product_description_2]}
+        
+        # Send a POST request to the prediction endpoint
+        response_2 = requests.post(prediction_url, data=payload_2, files=files_2)
+        # Check if a prediction was returned as expected
+        assert response_2.status_code == 200, f"Expected status code 200 but got {response_2.status_code}"
